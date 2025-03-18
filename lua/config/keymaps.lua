@@ -17,9 +17,12 @@ vim.keymap.set({"n","v"}, "<leader>gp", '"+p', { desc = "paste for system clipbo
 
 -- run python file
 vim.keymap.set("n", "<leader>gr", function()
-  local filename = vim.fn.getreg("a")
-  vim.cmd("botright new | resize 5 | term python3 " .. filename)
-  -- vim.cmd("redraw!")
+  local filename = vim.api.nvim_buf_get_name(0)
+  if filename:match("%.py$") ~= nil then
+    vim.cmd("botright new | resize 5 | term python3 " .. filename)
+  else
+    print("yo this not python file bruv")
+  end
 end, { desc = "run python file in register 'a'" })
 
 -- mason

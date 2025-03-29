@@ -19,6 +19,7 @@ vim.keymap.set({"n","v"}, "<leader>gp", '"+p', { desc = "paste for system clipbo
 vim.keymap.set("n", "<leader>gr", function()
   local filename = vim.api.nvim_buf_get_name(0)
   if filename:match("%.py$") ~= nil then
+    vim.cmd(":w")
     vim.cmd("botright new | resize 5 | term python3 " .. filename)
   else
     print("yo this not python file bruv")
